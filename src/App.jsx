@@ -4,7 +4,6 @@ import Account from "./components/account/account";
 import Login from "./components/account/Login";
 import SignUp from "./components/account/SignUp";
 import Loading from "./components/Loading";
-import Home from "./containers/Home";
 import Likes from "./containers/Likes";
 import Profile from "./containers/Profile";
 import Search from "./containers/Search";
@@ -35,7 +34,6 @@ function App() {
 
   const pathLink = [
     { path: "/", element: <PrivateRouter >  < Loading />  </ PrivateRouter> },
-    { path: "/home", element: <PrivateRouter > < Home /> </ PrivateRouter> },
     { path: "/search", element: <PrivateRouter > < Search /> </ PrivateRouter> },
     { path: "/likes", element: <PrivateRouter > < Likes /> </ PrivateRouter> },
     { path: "/likes/you", element: <PrivateRouter > < YouLink /> </ PrivateRouter> },

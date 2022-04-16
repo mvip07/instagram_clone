@@ -1,9 +1,8 @@
 import styled from "styled-components"
-import Header from "../Header"
 import Logo from "../../assets/Logo/Logo.svg"
 import User from "../../assets/images/user1.png"
 import { useNavigate } from "react-router-dom"
-function Account () {
+function Account() {
     const navigate = useNavigate()
     return (
         <Wrapper>

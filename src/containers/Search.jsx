@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import image from "../assets/images/nootbook.png"
 import Card from '../components/search/Card';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import searchimg from "../assets/images/search.svg"
 import API from '../utils/axios';
@@ -40,7 +40,7 @@ const Search = () => {
         { id: 26, image: image },
         { id: 27, image: image },
     ]
-
+    const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [error, setError] = useState("");
     const [img, setImg] = useState([]);
@@ -94,10 +94,10 @@ const Search = () => {
                     <img src={searchimg} alt="" />
                 </div>
                 <ul className="users">
-                    <Link className='link' to={`/user/${data[0]}/${data[1]}`} key={Math.random()}>
+                    <div className='link'>
                         {/* <img src={`https://searching-server.herokuapp.com/attach/avatar/22`} alt='' /> */}
-                        <h2 className='item-username'>{data[0]}</h2>
-                    </Link>
+                        <h2 className='item-username' onClick={() => navigate(`/user/${data[0]}/${data[1]}`)}>{data[0]}</h2>
+                    </div>
                 </ul>
                 <div className="cards">
                     {img.map(({ attachs, id }) => <Card key={id} attachs={attachs} id={id} />)}
@@ -105,7 +105,7 @@ const Search = () => {
 
             </div>
             {error.length > 0 ? <Error error={error} /> : ""}
-        </Wrapper>
+        </Wrapper >
     );
 }
 
@@ -131,7 +131,6 @@ const Wrapper = styled.div`
             background: rgba(118, 118, 128, 0.12);
             outline: none;
             border: none;
-
             font-weight: 400;
             font-size: 16px;
             line-height: 22px;
@@ -155,7 +154,8 @@ const Wrapper = styled.div`
     }
 
     .cards {
-        height: calc(812px - 168px);
+        margin-top: 50px;
+        height: 570px;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(124px, 1fr));
         grid-auto-rows: 124px;
@@ -169,15 +169,15 @@ const Wrapper = styled.div`
     }    
 
     .users {
-        width: 100%;
-        max-height: calc(812px - 164px);
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        padding: 0 8px;
         position: absolute;
         top: 48px;
-        background-color: white;
+        width: 100%;
+        max-height: 164px;
+        overflow-y: auto;
+        display: flex;
+        padding: 0 8px;
+       
+        background-color: #fff;
 
         ::-webkit-scrollbar {
             width: 0;

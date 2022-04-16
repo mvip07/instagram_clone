@@ -14,9 +14,8 @@ import User from "../assets/images/user1.png"
 import Error from "./error";
 import PostSideBar from "./PostSideBar";
 
-const PostPreview = ({ location, title, attachs, id, profileId }) => {
-    localStorage.setItem("img", Heart)
-    const [img, setImg] = useState(localStorage.getItem('img'))
+const PostPreview = ({ location, title, attachs, id, profileId, likeMy }) => {
+    const [LikeMy, setLikeMy] = useState(likeMy || [])
     const [postid, setPostid] = useState(id);
     const [error, setError] = useState("")
     const [sidebar, setSideBar] = useState(false);
@@ -28,7 +27,7 @@ const PostPreview = ({ location, title, attachs, id, profileId }) => {
 
     function LikeDelete() {
         API.get(`/like/delete/${postid}`)
-            .then(res => setImg(Heart))
+            .then(res => console.log(res))
             .catch(err => setError(err.message))
     }
 
@@ -41,7 +40,7 @@ const PostPreview = ({ location, title, attachs, id, profileId }) => {
                     "postId": postid,
                 }
                 API.post(`/like`, reqBody)
-                    .then(res => setImg(btnLike))
+                    .then(res => console.log(res))
                     .catch(err => setError(err.message))
 
                 const like = document.createElement('div'); like.classList.add("onClickLike")
@@ -82,7 +81,9 @@ const PostPreview = ({ location, title, attachs, id, profileId }) => {
                 <div className='post-footer'>
                     <div className='footer-icon'>
                         <div>
-                            < img src={img} alt='heartIcon' onClick={LikeDelete} />
+                            {LikeMy.map(({ postId }) => {
+                                if (postId == id) return <img src={btnLike} key={Math.random()} alt='heartIcon' onClick={LikeDelete} />
+                            })}
                             < img src={Comment} alt='heartIcon' />
                             <img src={Messange} alt='heartIcon' />
                         </div>
@@ -237,3 +238,5 @@ const Wrapper = styled.div`
         background-color: red;
     }
 `
+
+const Ggg = styled.div``

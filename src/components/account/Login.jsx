@@ -11,20 +11,17 @@ import Error from '../error';
 const localUsername = localStorage.getItem("username")
 const localPassword = localStorage.getItem("password")
 
-
 const Login = () => {
 
     const navigate = useNavigate();
-    const [username, setUsername] = useState(localUsername || "");
-    const [password, setPassword] = useState(localPassword || "");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [loginSave, setLoginSave] = useState("Log in");
     const [error, setError] = useState("")
+    // const input = document.querySelectorAll(".input")
 
-    useEffect(() => {
-        const input = document.querySelectorAll("input")
-        input[0].value = localUsername
-        input[1].value = localPassword
-    }, [])
+    // input[0].value = localUsername;
+    // input[1].value = localPassword
 
     function LoginSubmit() {
         setLoginSave("Loading...")
@@ -32,8 +29,10 @@ const Login = () => {
             "username": username,
             "password": password,
         }).then(res => {
-            localStorage.setItem('login-res', JSON.stringify(res))
+            //  localStorage.setItem('login-res', JSON.stringify(res))
             localStorage.setItem("user-token", res.data.jwt)
+            localStorage.setItem("username", res.data.username)
+            localStorage.setItem("password", res.data.password)
             navigate("/main");
             setLoginSave("Log in")
         })
@@ -48,8 +47,8 @@ const Login = () => {
                 </div>
                 <div className="login-container__input">
                     <img src={Logo} alt="" />
-                    <input type={"text"} placeholder="Username" onChange={({ target }) => setUsername(target.value)} />
-                    <input type={"password"} placeholder="Password" onChange={({ target }) => setPassword(target.value)} />
+                    <input type={"text"} placeholder="Username" className='input' onChange={({ target }) => setUsername(target.value)} />
+                    <input type={"password"} placeholder="Password" className='input' onChange={({ target }) => setPassword(target.value)} />
                     <p className="forgotPassword">Forgot password?</p>
                     <button onClick={LoginSubmit}>{loginSave}</button>
                     <div className="login-Facebook">

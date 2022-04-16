@@ -14,7 +14,7 @@ function MyPosts() {
 
     useEffect(() => {
         API.get(`https://searching-server.herokuapp.com/post/my`)
-            .then(res => { setPost(res.data); console.log(res) })
+            .then(res => setPost(res.data))
             .catch(res => setError(res.message))
     }, [])
 
@@ -23,7 +23,7 @@ function MyPosts() {
             <div className="back" onClick={() => navigate(-1)}>
                 <p>Back</p>
             </div>
-            {post.map(({ location, title, attachs, id }) => (<PostPreview key={id} location={location} title={title} attachs={attachs} id={id} />))}
+            {post.map(({ location, title, attachs, id, profileId }) => (<PostPreview key={id} location={location} title={title} attachs={attachs} id={id} profileId={profileId} />))}
             {error.length > 0 ? <Error error={error} /> : ""}
         </Wrapper>
     )

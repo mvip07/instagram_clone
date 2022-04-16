@@ -24,9 +24,15 @@ const Main = () => {
     const [like, setLike] = useState([]);
     const [follow, setFollow] = useState([])
     const [error, setError] = useState("")
+    const [likeMy, setLikeMy] = useState([])
 
     useEffect(() => {
-        axios.get(`https://searching-server.herokuapp.com/post`)
+
+        API.get(`/like/my`)
+            .then(res => setLikeMy(res.data))
+            .catch(err => setError(err.message))
+
+        API.get(`/post`)
             .then(res => setPost(res.data))
             .catch(err => setError(err.message))
 
@@ -38,7 +44,7 @@ const Main = () => {
     useEffect(() => {
         API.get(`/following/followings/${profileIdLocal}`)
             .then(res => setFollow(res.data))
-    }, [])
+    }, [profileIdLocal])
 
     return (
         <Wrapper>
@@ -74,7 +80,7 @@ const Main = () => {
                 </div>
                 <div className='main_container__post'>
                     {post.map(({ location, title, attachs, id, profileId }) => (
-                        <PostPreview key={id} location={location} title={title} attachs={attachs} id={id} profileId={profileId} like={like} />
+                        <PostPreview key={id} location={location} title={title} attachs={attachs} id={id} profileId={profileId} like={like} likeMy={likeMy} />
                     ))
                     }
 
