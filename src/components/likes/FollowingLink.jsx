@@ -38,7 +38,7 @@ const FollowingLink = () => {
                                     </div>
                                 </div>
                             )
-                        }
+                        } else return null
                     }
                     ))
                 }

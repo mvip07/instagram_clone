@@ -41,13 +41,17 @@ const Search = () => {
             API.get(`/profile/username/${value}`)
                 .then(res => {
                     const usernameSaerch = res.data
+                    let faceData = []
                     usernameSaerch.map(({ username, id, password }) => {
-                        let faceData = []
                         let name = username.toUpperCase()
-                        if ((name.search(value.toUpperCase()) >= 0) && (value.trim() !== ""))
-                            faceData.push(username, id, password)
-                        setData(faceData)
+                        if ((name.search(value.toUpperCase()) >= 0) && (value.trim() !== "")) {
+                            return faceData.push(username, id, password)
+                        } else {
+                            return null
+                        }
+
                     })
+                    setData(faceData)
                 })
                 .catch(res => setError(res.message)
                 )

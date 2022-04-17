@@ -14,7 +14,7 @@ import Error from "./error";
 import PostSideBar from "./PostSideBar";
 
 const PostPreview = ({ location, title, attachs, id, profileId, likeMy }) => {
-    const [LikeMy, setLikeMy] = useState(likeMy || [])
+    const LikeMy = likeMy || []
     const [error, setError] = useState("")
     const [sidebar, setSideBar] = useState(false);
     const [postFullName, setPostFullName] = useState("");
@@ -81,6 +81,7 @@ const PostPreview = ({ location, title, attachs, id, profileId, likeMy }) => {
                         <div>
                             {LikeMy.map(({ postId }) => {
                                 if (postId === id) return <img src={btnLike} key={Math.random()} alt='heartIcon' onClick={LikeDelete} />
+                                else return null
                             })}
                             < img src={Comment} alt='heartIcon' />
                             <img src={Messange} alt='heartIcon' />

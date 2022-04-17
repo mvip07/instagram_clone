@@ -39,7 +39,7 @@ const YouLink = () => {
                                     </div>
                                 </div>
                             )
-                        }
+                        } else return null
                     }
                     ))
                 }

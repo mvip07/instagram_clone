@@ -15,7 +15,6 @@ import ProfileEdit from "./containers/ProfileEdit";
 import Createstory from "./containers/Createstory";
 import MyPosts from "./containers/MyPosts";
 import PrivateRouter from "./utils/PrivateRouter";
-import Error from "./components/error";
 import UserProfile from "./User/Profile";
 import ProfileEditUser from "./User/ProfileEditUser";
 import UserPost from "./User/UserPost"
@@ -87,4 +86,5 @@ const Wrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  overflow:hidden;
 `
