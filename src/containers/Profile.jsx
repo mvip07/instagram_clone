@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Footer from '../components/Footer';
 import { NavLink, useNavigate } from 'react-router-dom';
-
+import API from '../utils/axios';
+import Error from '../components/error';
 // import icon
-
 import PrivateIcon from "../assets/icons/privateIcon.svg"
 import Down from "../assets/icons/downIcon.svg"
 import MenuBar from "../assets/icons/menuIcon.svg"
@@ -12,10 +11,7 @@ import GridIcon from "../assets/icons/gridIcon.svg"
 import TabsIcon from "../assets/icons/tagsIcon.svg"
 
 import User from "../assets/images/user1.png"
-import Gallary from "../assets/images/profileImg.png"
-
 // profileSidebar Icons import
-
 import Archive from "../assets/icons/archiveIcon.svg"
 import YourActivity from "../assets/icons/yourActivityIcon.svg"
 import Nametag from "../assets/icons/nametagIcon.svg"
@@ -24,9 +20,6 @@ import CloseFriends from "../assets/icons/closeFrindsIcon.svg"
 import DiscoverPeople from "../assets/icons/discoverPeopleIcon.svg"
 import OpenFacebook from "../assets/icons/openFacebookIcon.svg"
 import Setting from "../assets/icons/settingIcon.svg"
-import axios from 'axios';
-import API from '../utils/axios';
-import Error from '../components/error';
 
 const profileSidebar = [
     { img: Archive, text: "Archive" },
@@ -70,7 +63,6 @@ const Profile = () => {
             .then(res => { setPostsLength(res.data.length); setPostsGallary(res.data) })
             .catch(res => setError(res.message))
 
-
         API.get(`/following/followers/count/${profileIdLocal}`)
             .then(res => setFollowers(res.data))
             .catch(res => setError(res.message))
@@ -78,8 +70,6 @@ const Profile = () => {
         API.get(`/following/followings/count/${profileIdLocal}`)
             .then(res => setFollowing(res.data)).catch(err => console.log(err))
             .catch(res => setError(res.message))
-
-
 
     }, [profileIdLocal]);
     return (
@@ -145,18 +135,6 @@ const Profile = () => {
                             </div>
                             <p>Friends</p>
                         </div>
-                        <div className='storys__new-box'>
-                            <div>
-                                <img src={User} alt="" />
-                            </div>
-                            <p>Friends</p>
-                        </div>
-                        <div className='storys__new-box'>
-                            <div>
-                                <img src={User} alt="" />
-                            </div>
-                            <p>Friends</p>
-                        </div>
                     </div>
                 </div>
                 <div className='gallary-content'>
@@ -195,7 +173,7 @@ const Profile = () => {
 export default Profile;
 
 const Wrapper = styled.div`  
- display: flex;
+    display: flex;
  
  .profile-container {
     width: 375px;

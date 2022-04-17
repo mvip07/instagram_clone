@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import API from "../utils/axios"
@@ -15,7 +14,7 @@ function Followers() {
     useEffect(() => {
         API.get(`/following/followers/${profileIdLocal}`)
             .then(res => setFollowers(res.data))
-    }, [])
+    }, [profileIdLocal])
 
     function Follow(id) {
         API.post(`/following/follow/${id}`).then(res => setFollowersText("UnFollow"))

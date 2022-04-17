@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import SearchHeader from './SearchHeader';
 import avatar from "../../assets/images/avatar.png"
-import followingImg from "../../assets/images/followImg.png"
 import API from '../../utils/axios';
 import Error from '../error';
 import { useState } from 'react';
-import axios from 'axios';
 
 const YouLink = () => {
     const [error, setError] = useState("")
@@ -30,7 +28,7 @@ const YouLink = () => {
             <div className='youLink-container'>
                 {
                     youLike.map(({ postId, profileId }) => post.map(({ attachs, id }) => {
-                        if (postId == id) {
+                        if (postId === id) {
                             return (
                                 <div className='content__box' key={Math.random()}>
                                     <div className='content__avatar'>

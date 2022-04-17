@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 // import icon
-
 import Camera from "../assets/icons/cameraIcon.svg"
 import Logo from "../assets/Logo/Logo.svg"
 import TV from "../assets/icons/tvIcon.svg"
 import Messange from "../assets/icons/messangerIcon.svg"
-
-
 // import user
-
 import User from "../assets/images/user1.png"
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import API from '../utils/axios';
 import PostPreview from '../components/PostPreview';
 import Error from '../components/error';
@@ -186,5 +181,3 @@ const Wrapper = styled.div`
         display: none;
     }
 `
-
-const Post = styled.div``;

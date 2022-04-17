@@ -1,4 +1,3 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import API from "../utils/axios"
@@ -9,12 +8,11 @@ function Following() {
     const profileIdLocal = JSON.parse(localStorage.getItem("profileId"))
     const navigate = useNavigate();
     const [follow, setFollow] = useState([])
-    // const [unFollow, setUnfollow] = useState(0);
 
     useEffect(() => {
         API.get(`/following/followings/${profileIdLocal}`)
             .then(res => setFollow(res.data))
-    }, [])
+    }, [profileIdLocal])
 
     function UnFollow(id) {
         API.post(`/following/unfollow/${id}`).then(res => console.log(res))

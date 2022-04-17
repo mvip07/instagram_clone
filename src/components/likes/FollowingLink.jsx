@@ -2,15 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import SearchHeader from './SearchHeader';
 import avatar from "../../assets/images/avatar.png"
-import followingImg from "../../assets/images/followImg.png"
 import API from '../../utils/axios';
 import Error from '../error';
 
 const FollowingLink = () => {
 
-    const [image, setImage] = useState("");
     const [post, setPost] = useState([]);
-    const [profile, setProfile] = useState("");
     const [likeMe, setLikeMe] = useState([]);
     const [error, setError] = useState("")
 
@@ -24,14 +21,13 @@ const FollowingLink = () => {
             .catch(res => setError(res.message))
 
     }, [])
-    // @mirabzal_07
     return (
         <Wrapper>
             <SearchHeader />
             <div className='postLike-container'>
                 {
                     likeMe.map(({ postId, profileId }) => post.map(({ attachs, id }) => {
-                        if (postId == id) {
+                        if (postId === id) {
                             return (
                                 <div className='content__box' key={Math.random()}>
                                     <div className='content__avatar'>

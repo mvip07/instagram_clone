@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import API from "../utils/axios";
 
 import More from "../assets/icons/moreIcon.svg"
-import Heart from "../assets/icons/heartIcon.svg"
 import Comment from "../assets/icons/commentIcon.svg"
 import Save from "../assets/icons/saveIcon.svg"
 import Like from "../assets/icons/likeIcon.svg"
@@ -16,17 +15,16 @@ import PostSideBar from "./PostSideBar";
 
 const PostPreview = ({ location, title, attachs, id, profileId, likeMy }) => {
     const [LikeMy, setLikeMy] = useState(likeMy || [])
-    const [postid, setPostid] = useState(id);
     const [error, setError] = useState("")
     const [sidebar, setSideBar] = useState(false);
     const [postFullName, setPostFullName] = useState("");
 
     useEffect(() => {
         API.get(`/profile/${profileId}`).then(res => setPostFullName(res.data.fullName))
-    }, [])
+    }, [profileId])
 
     function LikeDelete() {
-        API.get(`/like/delete/${postid}`)
+        API.get(`/like/delete/${id}`)
             .then(res => console.log(res))
             .catch(err => setError(err.message))
     }
@@ -37,7 +35,7 @@ const PostPreview = ({ location, title, attachs, id, profileId, likeMy }) => {
         for (let postMedia of postMedias) {
             postMedia.addEventListener('click', () => {
                 const reqBody = {
-                    "postId": postid,
+                    "postId": id,
                 }
                 API.post(`/like`, reqBody)
                     .then(res => console.log(res))
@@ -82,7 +80,7 @@ const PostPreview = ({ location, title, attachs, id, profileId, likeMy }) => {
                     <div className='footer-icon'>
                         <div>
                             {LikeMy.map(({ postId }) => {
-                                if (postId == id) return <img src={btnLike} key={Math.random()} alt='heartIcon' onClick={LikeDelete} />
+                                if (postId === id) return <img src={btnLike} key={Math.random()} alt='heartIcon' onClick={LikeDelete} />
                             })}
                             < img src={Comment} alt='heartIcon' />
                             <img src={Messange} alt='heartIcon' />
@@ -100,7 +98,7 @@ const PostPreview = ({ location, title, attachs, id, profileId, likeMy }) => {
                 </div>
             </div>
 
-            {sidebar == true ? <PostSideBar id={id} profileId={profileId} /> : ""}
+            {sidebar === true ? <PostSideBar id={id} profileId={profileId} /> : ""}
 
             {error.length > 0 ? <Error error={error} /> : ""}
         </Wrapper>
@@ -238,5 +236,3 @@ const Wrapper = styled.div`
         background-color: red;
     }
 `
-
-const Ggg = styled.div``

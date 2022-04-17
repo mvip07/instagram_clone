@@ -7,7 +7,6 @@ import { ReactComponent as Plus } from "../assets/icons/plusIcon.svg"
 import { ReactComponent as BarsIcon } from "../assets/icons/barsIcon.svg"
 import { ReactComponent as Search } from "../assets/icons/searchIcon.svg"
 import { ReactComponent as Heart } from "../assets/icons/heartIcon.svg"
-import Likes from '../containers/Likes';
 
 
 const Footer = () => {

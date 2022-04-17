@@ -16,7 +16,7 @@ function UserMyPosts() {
         API.get(`/post/profile/${id}`)
             .then(res => { setPost(res.data); console.log(res) })
             .catch(res => setError(res.message))
-    }, [])
+    }, [id])
 
     return (
         <Wrapper>

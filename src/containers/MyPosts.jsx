@@ -8,7 +8,6 @@ import API from "../utils/axios";
 function MyPosts() {
 
     const navigate = useNavigate()
-
     const [post, setPost] = useState([]);
     const [error, setError] = useState("")
 

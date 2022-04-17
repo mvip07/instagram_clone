@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import User from "../assets/images/user1.png"
 import Error from '../components/error';
 import API from '../utils/axios';
+
 const ProfileEdit = () => {
     const navigate = useNavigate();
     const profileIdLocal = JSON.parse(localStorage.getItem("profileId"))
@@ -51,11 +52,11 @@ const ProfileEdit = () => {
             .catch(res => setError(res.message))
     }
 
-    function LogOut() {
-        API.delete(`profile/delete/${profileIdLocal}`)
-            .then(res => console.log(res))
-            .catch(res => setError(res.message))
-    }
+    // function LogOut() {
+    //     API.delete(`profile/delete/${profileIdLocal}`)
+    //         .then(res => console.log(res))
+    //         .catch(res => setError(res.message))
+    // }
 
     return (
         <Wrapper>
@@ -125,32 +126,30 @@ const Wrapper = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
 
-        p {
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 21px;
-            letter-spacing: -0.33px;
-            color: #262626;
-        }
+    .edit-profile__header p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 21px;
+        letter-spacing: -0.33px;
+        color: #262626;
+    }
 
-       
+    .edit-profile__header b {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 21px;
+        letter-spacing: -0.33px;
+        color: #262626;
+    }
 
-        b {
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 21px;
-            letter-spacing: -0.33px;
-            color: #262626;
-        }
-
-        span {
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 21px;
-            letter-spacing: -0.33px;
-            color: #3897F0;
-        }
+    .edit-profile__header span {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 21px;
+        letter-spacing: -0.33px;
+        color: #3897F0;
     }
 
     .edit-profile__change-profile-photo {
@@ -159,21 +158,21 @@ const Wrapper = styled.div`
         text-align: center;
         width: 100%;
         height: 160.5px;
+        border-radius: 50%;        
+    }
 
-        img {
-            width: 95px;
-            height: 95px;
-            border-radius: 50%;
-        }
+    .edit-profile__change-profile-photo  img {
+        width: 95px;
+        height: 95px;
+    }
 
-        p {
-            margin-top: 12.5px;
-            font-weight: 600;
-            font-size: 13px;
-            line-height: 21px;
-            letter-spacing: -0.05px;
-            color: #3897F0;
-        }
+    .edit-profile__change-profile-photo p {
+        margin-top: 12.5px;
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 21px;
+        letter-spacing: -0.05px;
+        color: #3897F0;
     }
 
     .edit-profile__user-info {
@@ -183,74 +182,71 @@ const Wrapper = styled.div`
         align-items: center;
         border-top: 1px solid rgba(0, 0, 0, 0.1);
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
 
-        div {
-            width: 100px;
-            height: 100%;
-            padding: 0 16px;
+    .edit-profile__user-info div {
+        width: 100px;
+        height: 100%;
+        padding: 0 16px;
+    }
 
-            p {
-                padding: 15px 0;
-                font-weight: 400;
-                font-size: 15px;
-                line-height: 18px;
-                letter-spacing: -0.25px;
-                color: #262626;
-            }
-        }
+    .edit-profile__user-info div p {
+        padding: 15px 0;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 18px;
+        letter-spacing: -0.25px;
+        color: #262626;
+    }
 
-        div:last-child {
-            width: 100%;
-            p:not(p:first-child) {
-                border-top: 1px solid rgba(0, 0, 0, 0.2);
-            }
+    .edit-profile__user-info div:last-child {
+        width: 100%;
+        p:not(p:first-child) {
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
         }
     }
 
-    .edit-profile__privateInformation {
-        h4 {
-            padding: 16px 0 15px 16px;
-            font-weight: 400;
-            font-size: 15px;
-            line-height: 18px;
-            letter-spacing: -0.25px;
-            color: #3897F0;
-       } 
+    .edit-profile__privateInformation  h4 {
+        padding: 16px 0 15px 16px;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 18px;
+        letter-spacing: -0.25px;
+        color: #3897F0;
+    } 
 
-       h5 {
+    .edit-profile__privateInformation h5 {
         padding: 14px 16px; 
         font-weight: 600;
         font-size: 15px;
         line-height: 20px;
         letter-spacing: -0.25px;
         color: #262626;
-       }
     }
 
     .professionalAccount__info {
         display: flex;
         align-items: center;
+    }
 
-        div {
-            width: 100px;
-            height: 100%;
-            padding: 0 16px;
+    .professionalAccount__info div {
+        width: 100px;
+        height: 100%;
+        padding: 0 16px;
+    }
+    .professionalAccount__info div p {
+        padding: 15px 0;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 18px;
+        letter-spacing: -0.25px;
+        color: #262626;
+    }
 
-            p {
-                padding: 15px 0;
-                font-weight: 400;
-                font-size: 15px;
-                line-height: 18px;
-                letter-spacing: -0.25px;
-                color: #262626;
-            }
-        }
-
-        div:last-child {
-            width: 100%;
-            p:not(p:first-child) {
-                border-top: 1px solid rgba(0, 0, 0, 0.2);
-            }
+    .professionalAccount__info div:last-child {
+        width: 100%;
+        p:not(p:first-child) {
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
         }
     }
 

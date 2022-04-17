@@ -2,14 +2,11 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Logo from "../../assets/Logo/Logo.svg"
 import faceBookIcon from "../../assets/icons/Icon.svg"
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Error from '../error';
-
-const localUsername = localStorage.getItem("username")
-const localPassword = localStorage.getItem("password")
 
 const Login = () => {
 
@@ -18,10 +15,6 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [loginSave, setLoginSave] = useState("Log in");
     const [error, setError] = useState("")
-    // const input = document.querySelectorAll(".input")
-
-    // input[0].value = localUsername;
-    // input[1].value = localPassword
 
     function LoginSubmit() {
         setLoginSave("Loading...")
@@ -29,10 +22,8 @@ const Login = () => {
             "username": username,
             "password": password,
         }).then(res => {
-            //  localStorage.setItem('login-res', JSON.stringify(res))
             localStorage.setItem("user-token", res.data.jwt)
             localStorage.setItem("username", res.data.username)
-            localStorage.setItem("password", res.data.password)
             navigate("/main");
             setLoginSave("Log in")
         })

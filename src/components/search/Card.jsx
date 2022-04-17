@@ -13,9 +13,6 @@ const Card = ({ attachs, id }) => {
 export default Card;
 
 const Wrapper = styled.div`
-    /* grid-column: span ${({ id }) => ((id - 2) % 7 === 0) ? "2" : "1"};
-    grid-row: span ${({ id }) => ((id - 2) % 7 === 0) ? "2" : "1"}; */
-
     grid-column: span ${({ id }) => ((id - 6) % 5 === 0) ? "2" : "1"};
     grid-row: span ${({ id }) => ((id - 6) % 5 === 0) ? "2" : "1"}; 
     

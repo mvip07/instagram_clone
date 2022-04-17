@@ -8,8 +8,6 @@ function PostSideBar({ profileId, id }) {
         RemovSideBar.classList.toggle('removPostSidebar')
     }
 
-    console.log(id)
-
     function DeletePost() {
         API.delete(`/post/delete/${id}`)
             .then(res => console.log("Succsess"))

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 import Error from "../components/error";
 import API from "../utils/axios";
