@@ -24,6 +24,7 @@ const Login = () => {
         }).then(res => {
             localStorage.setItem("user-token", res.data.jwt)
             localStorage.setItem("username", res.data.username)
+            localStorage.setItem("profileId", res.data.id)
             navigate("/main");
             setLoginSave("Log in")
         })
